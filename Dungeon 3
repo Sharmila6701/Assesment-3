@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class Dungeon {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter dimensions of the dungeon (rows and columns): ");
+        String dimensionInput = scanner.nextLine();
+        String[] dimensions = dimensionInput.split("\\s+");
+        int rows = Integer.parseInt(dimensions[0]);
+        int columns = Integer.parseInt(dimensions[1]);
+
+        System.out.print("Enter position of the adventurer: ");
+        String adventurerInput = scanner.nextLine();
+        String[] adventurerPosition = adventurerInput.split("\\s+");
+        int adventurerRow = Integer.parseInt(adventurerPosition[0]);
+        int adventurerColumn = Integer.parseInt(adventurerPosition[1]);
+
+        System.out.print("Enter position of the gold: ");
+        String goldInput = scanner.nextLine();
+        String[] goldPosition = goldInput.split("\\s+");
+        int goldRow = Integer.parseInt(goldPosition[0]);
+        int goldColumn = Integer.parseInt(goldPosition[1]);
+
+        int steps = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
+
+        System.out.println("Minimum number of steps: " + steps);
+    }
+}
