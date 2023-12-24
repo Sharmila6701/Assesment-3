@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Dungeon {
+public class Q1{
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -28,3 +28,40 @@ public class Dungeon {
         System.out.println("Minimum number of steps: " + steps);
     }
 }
+public class Q2 {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		System.out.print("Enter number of rows: ");
+		int rows = scanner.nextInt();
+		System.out.print("Enter number of columns: ");
+		int columns = scanner.nextInt();
+
+		System.out.print("Enter adventurer's row: ");
+		int adventurerRow = scanner.nextInt();
+		System.out.print("Enter adventurer's column: ");
+		int adventurerColumn = scanner.nextInt();
+
+		System.out.print("Enter gold's row: ");
+		int goldRow = scanner.nextInt();
+		System.out.print("Enter gold's column: ");
+		int goldColumn = scanner.nextInt();
+
+		System.out.print("Enter monster's row: ");
+		int monsterRow = scanner.nextInt();
+		System.out.print("Enter monster's column: ");
+		int monsterColumn = scanner.nextInt();
+
+		int stepsToGold = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
+
+		int stepsToMonster = Math.abs(monsterRow - goldRow) + Math.abs(monsterColumn - goldColumn);
+
+		if (stepsToGold <= stepsToMonster) {
+			System.out.println("Minimum number of moves: " + stepsToGold);
+		} else {
+			System.out.println("No possible solution");
+		}
+	}
+}
+
