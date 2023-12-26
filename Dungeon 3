@@ -1,114 +1,49 @@
+package practice;
+
 import java.util.Scanner;
 
-public class Q1{
+public class Q1 {
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+	    public static void main(String[] args) {
+	        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter dimensions of the dungeon (rows and columns): ");
-        String dimensionInput = scanner.nextLine();
-        String[] dimensions = dimensionInput.split("\\s+");
-        int rows = Integer.parseInt(dimensions[0]);
-        int columns = Integer.parseInt(dimensions[1]);
+	        System.out.print("Enter number of rows: ");
+	        int rows = scanner.nextInt();
+	        System.out.print("Enter number of columns: ");
+	        int columns = scanner.nextInt();
 
-        System.out.print("Enter position of the adventurer: ");
-        String adventurerInput = scanner.nextLine();
-        String[] adventurerPosition = adventurerInput.split("\\s+");
-        int adventurerRow = Integer.parseInt(adventurerPosition[0]);
-        int adventurerColumn = Integer.parseInt(adventurerPosition[1]);
+	        System.out.print("Enter adventurer's row: ");
+	        int adventurerRow = scanner.nextInt();
+	        System.out.print("Enter adventurer's column: ");
+	        int adventurerColumn = scanner.nextInt();
 
-        System.out.print("Enter position of the gold: ");
-        String goldInput = scanner.nextLine();
-        String[] goldPosition = goldInput.split("\\s+");
-        int goldRow = Integer.parseInt(goldPosition[0]);
-        int goldColumn = Integer.parseInt(goldPosition[1]);
+	        System.out.print("Enter gold's row: ");
+	        int goldRow = scanner.nextInt();
+	        System.out.print("Enter gold's column: ");
+	        int goldColumn = scanner.nextInt();
 
-        int steps = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
+	        System.out.print("Enter monster's row: ");
+	        int monsterRow = scanner.nextInt();
+	        System.out.print("Enter monster's column: ");
+	        int monsterColumn = scanner.nextInt();
 
-        System.out.println("Minimum number of steps: " + steps);
-    }
-}
-public class Q2 {
+	        System.out.print("Enter trigger's row: ");
+	        int triggerRow = scanner.nextInt();
+	        System.out.print("Enter trigger's column: ");
+	        int triggerColumn = scanner.nextInt();
 
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	        int stepsToGold = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
 
-		System.out.print("Enter number of rows: ");
-		int rows = scanner.nextInt();
-		System.out.print("Enter number of columns: ");
-		int columns = scanner.nextInt();
+	        int stepsToTrigger = Math.abs(adventurerRow - triggerRow) + Math.abs(adventurerColumn - triggerColumn);
 
-		System.out.print("Enter adventurer's row: ");
-		int adventurerRow = scanner.nextInt();
-		System.out.print("Enter adventurer's column: ");
-		int adventurerColumn = scanner.nextInt();
+	        int stepsToMonster = Math.abs(monsterRow - goldRow) + Math.abs(monsterColumn - goldColumn);
 
-		System.out.print("Enter gold's row: ");
-		int goldRow = scanner.nextInt();
-		System.out.print("Enter gold's column: ");
-		int goldColumn = scanner.nextInt();
-
-		System.out.print("Enter monster's row: ");
-		int monsterRow = scanner.nextInt();
-		System.out.print("Enter monster's column: ");
-		int monsterColumn = scanner.nextInt();
-
-		int stepsToGold = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
-
-		int stepsToMonster = Math.abs(monsterRow - goldRow) + Math.abs(monsterColumn - goldColumn);
-
-		if (stepsToGold <= stepsToMonster) {
-			System.out.println("Minimum number of moves: " + stepsToGold);
-		} else {
-			System.out.println("No possible solution");
-		}
+	        if (stepsToGold <= stepsToMonster && stepsToGold <= stepsToTrigger) {
+	            System.out.println("Minimum number of steps: " + stepsToGold);
+	        } else if (stepsToTrigger <= stepsToGold && stepsToTrigger <= stepsToMonster) {
+	            System.out.println("Minimum number of steps: " + (stepsToTrigger + Math.abs(triggerRow - goldRow) + Math.abs(triggerColumn - goldColumn)));
+	        } else {
+	            System.out.println("No possible solution");
+	        }
+	    }
 	}
-}
-                System.out.print("Enter number of rows: ");
-		int rows = scanner.nextInt();
-		System.out.print("Enter number of columns: ");
-		int columns = scanner.nextInt();
-
-		System.out.print("Enter adventurer's row: ");
-		int adventurerRow = scanner.nextInt();
-		System.out.print("Enter adventurer's column: ");
-		int adventurerColumn = scanner.nextInt();
-
-		System.out.print("Enter gold's row: ");
-		int goldRow = scanner.nextInt();
-		System.out.print("Enter gold's column: ");
-		int goldColumn = scanner.nextInt();
-
-		System.out.print("Enter monster's row: ");
-		int monsterRow = scanner.nextInt();
-		System.out.print("Enter monster's column: ");
-		int monsterColumn = scanner.nextInt();
-
-		int stepsToGold = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
-
-		int stepsToMonster = Math.abs(monsterRow - goldRow) + Math.abs(monsterColumn - goldColumn);
-
-		if (stepsToGold <= stepsToMonster) {
-			System.out.println("Minimum number of moves: " + stepsToGold);
-
-			System.out.println("Path:");
-			while (adventurerRow != goldRow || adventurerColumn != goldColumn) {
-				if (adventurerRow < goldRow) {
-					adventurerRow++;
-				} else if (adventurerRow > goldRow) {
-					adventurerRow--;
-				}
-
-				if (adventurerColumn < goldColumn) {
-					adventurerColumn++;
-				} else if (adventurerColumn > goldColumn) {
-					adventurerColumn--;
-				}
-
-				System.out.println("(" + adventurerRow + ", " + adventurerColumn + ")");
-			}
-		} else {
-			System.out.println("No possible solution");
-		}
-	}
-}
