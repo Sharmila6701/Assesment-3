@@ -1,16 +1,9 @@
-package practice;
-
-import java.util.Scanner;
-
-public class Q1 {
-
-	    public static void main(String[] args) {
-	        Scanner scanner = new Scanner(System.in);
+Scanner scanner = new Scanner(System.in);
 
 	        System.out.print("Enter number of rows: ");
-	        int rows = scanner.nextInt();
+	        int numRows = scanner.nextInt();
 	        System.out.print("Enter number of columns: ");
-	        int columns = scanner.nextInt();
+	        int numColumns = scanner.nextInt();
 
 	        System.out.print("Enter adventurer's row: ");
 	        int adventurerRow = scanner.nextInt();
@@ -22,28 +15,24 @@ public class Q1 {
 	        System.out.print("Enter gold's column: ");
 	        int goldColumn = scanner.nextInt();
 
-	        System.out.print("Enter monster's row: ");
-	        int monsterRow = scanner.nextInt();
-	        System.out.print("Enter monster's column: ");
-	        int monsterColumn = scanner.nextInt();
+	        System.out.print("Enter number of pits: ");
+	        int numPits = scanner.nextInt();
 
-	        System.out.print("Enter trigger's row: ");
-	        int triggerRow = scanner.nextInt();
-	        System.out.print("Enter trigger's column: ");
-	        int triggerColumn = scanner.nextInt();
+	        int minSteps = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
 
-	        int stepsToGold = Math.abs(adventurerRow - goldRow) + Math.abs(adventurerColumn - goldColumn);
+	        for (int i = 1; i <= numPits; i++) {
+	            System.out.print("Enter position of pit " + i + ": ");
+	            int pitRow = scanner.nextInt();
+	            int pitColumn = scanner.nextInt();
 
-	        int stepsToTrigger = Math.abs(adventurerRow - triggerRow) + Math.abs(adventurerColumn - triggerColumn);
+	            int pitSteps = Math.abs(adventurerRow - pitRow) + Math.abs(adventurerColumn - pitColumn)
+	                    + Math.abs(pitRow - goldRow) + Math.abs(pitColumn - goldColumn);
 
-	        int stepsToMonster = Math.abs(monsterRow - goldRow) + Math.abs(monsterColumn - goldColumn);
-
-	        if (stepsToGold <= stepsToMonster && stepsToGold <= stepsToTrigger) {
-	            System.out.println("Minimum number of steps: " + stepsToGold);
-	        } else if (stepsToTrigger <= stepsToGold && stepsToTrigger <= stepsToMonster) {
-	            System.out.println("Minimum number of steps: " + (stepsToTrigger + Math.abs(triggerRow - goldRow) + Math.abs(triggerColumn - goldColumn)));
-	        } else {
-	            System.out.println("No possible solution");
+	            if (pitSteps < minSteps) {
+	                minSteps = pitSteps;
+	            }
 	        }
+
+	        System.out.println("Minimum number of steps: " + minSteps);
 	    }
 	}
